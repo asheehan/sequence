@@ -7,4 +7,11 @@ defmodule Sequence.Server do
   def handle_call({:set_number, new_number}, _from, _current_number) do
     {:reply, new_number, new_number}
   end
+  def handle_cast({:increment_number, delta}, current_number) do
+    {:noreply, current_number + delta}
+  end
+
+  def handle_call(:pop, _from, [item | items]) do
+    {:reply, item, items}
+  end
 end
